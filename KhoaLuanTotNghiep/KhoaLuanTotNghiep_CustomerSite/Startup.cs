@@ -1,9 +1,11 @@
 using KhoaLuanTotNghiep_CustomerSite.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -33,8 +35,7 @@ namespace KhoaLuanTotNghiep_CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44375" +
-                    "";
+                    options.Authority = Configuration.GetValue<string>("IdentityServer");
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -54,8 +55,20 @@ namespace KhoaLuanTotNghiep_CustomerSite
                         RoleClaimType = "role"
                     };
                 });
+         
+
             services.AddHttpClient();
+            services.AddTransient<IRealEstateApiClient, RealEstateApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews();
         }
