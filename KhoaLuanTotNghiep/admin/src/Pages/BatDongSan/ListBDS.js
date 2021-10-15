@@ -120,7 +120,7 @@ const ListBDS = () => {
                 <td>{item.acreage}</td>
                 <td>{item.slug}</td>
                 <td>{item.approve}</td>
-                               <td>{item.location}</td>
+                <td>{item.location}</td>
                 <td>{item.phoneNumber}</td>
                 <td>{item.status}</td>
                 <td className="text-right">
