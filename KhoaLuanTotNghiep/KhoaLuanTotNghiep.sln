@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KhoaLuanTotNghiep_BackEnd",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KhoaLuanTotNghiep_CustomerSite", "KhoaLuanTotNghiep_CustomerSite\KhoaLuanTotNghiep_CustomerSite.csproj", "{1AED08EF-8BDB-4126-8BB7-6E3F6150D066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareModel", "ShareModel\ShareModel.csproj", "{7FBA9DAB-3E49-4737-AE31-CB4B9A879478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareModel", "ShareModel\ShareModel.csproj", "{7FBA9DAB-3E49-4737-AE31-CB4B9A879478}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
