@@ -19,7 +19,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
         }
         public async Task<CategoryModel> CreateCategoryAsync(CategoryModel categoryModel)
         {
-            var category = await _dbContext.categories.FirstOrDefaultAsync(x => x.CategoryName == categoryModel.CategoryName);
+            var category = await _dbContext.category.FirstOrDefaultAsync(x => x.CategoryName == categoryModel.CategoryName);
             if (category != null)
             {
                 throw new Exception("Category Name is used");
@@ -43,12 +43,12 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
 
         public async Task<bool> DeleteCategoryAsync(int id)
         {
-            var asset = await _dbContext.categories.FirstOrDefaultAsync(x => x.CategoryID == id);
+            var asset = await _dbContext.category.FirstOrDefaultAsync(x => x.CategoryID == id);
             if (asset == null)
             {
                 throw new Exception("Have not this category");
             }
-            var deleted = _dbContext.categories.Remove(asset);
+            var deleted = _dbContext.category.Remove(asset);
             var result = await _dbContext.SaveChangesAsync();
             if (result > 0)
             {
@@ -57,20 +57,23 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
             throw new Exception("Delete category fail");
         }
 
-        public async Task<ICollection<CategoryModel>> GetListCategoryAsync()
+        public async Task<ICollection<CategoryModel>> GetListCategoryAsync(CategoryRequestParam requestParam)
         {
-            return await _dbContext.categories
-                .Select(category => new CategoryModel 
-                { 
-                    CategoryID = category.CategoryID, 
-                    CategoryName = category.CategoryName, 
-                    Description = category.Description })
-                .ToListAsync();
+            var queryable = _dbContext.category.AsQueryable();
+            if (!string.IsNullOrEmpty(requestParam.Query))
+                queryable = queryable.Where(x => x.CategoryName.Contains(requestParam.Query));
+
+            return  await queryable.Select(x => new CategoryModel
+            {
+                CategoryID = x.CategoryID,
+                Description = x.Description,
+                CategoryName = x.CategoryName,
+            }).ToListAsync();
         }
 
         public async Task<CategoryModel> UpdateCategoryAsync(int id, CategoryModel categoryModel)
         {
-            var category = await _dbContext.categories.FirstOrDefaultAsync(x => x.CategoryID == id);
+            var category = await _dbContext.category.FirstOrDefaultAsync(x => x.CategoryID == id);
             if (category == null)
             {
                 throw new Exception("Have not this category");

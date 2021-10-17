@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button, Table } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -95,11 +94,10 @@ const ListBDS = () => {
             <th>Image</th>
             <th>Description</th>
             <th>Quality</th>
-            <th>Acreage</th>
-            <th>Slug</th>
-            <th>Approve</th>
             <th>Status</th>
             <th>Location</th>
+            <th>PhoneNumber</th>
+            <th>status</th>
             <th></th>
             <th></th>
           </tr>
@@ -118,9 +116,7 @@ const ListBDS = () => {
                 <td><img src={item.image} text={item.realEstateName} style={{height:"100px"}}/></td> 
                 <td>{item.description}</td>
                 <td>{item.quality}</td>
-                <td>{item.acreage}</td>
                 <td>{item.slug}</td>
-                <td>{item.approve}</td>
                 <td>{item.location}</td>
                 <td>{item.phoneNumber}</td>
                 <td>{item.status}</td>
@@ -159,4 +155,3 @@ const ListBDS = () => {
 };
 
 export default ListBDS;
-

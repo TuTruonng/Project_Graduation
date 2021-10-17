@@ -1,10 +1,10 @@
-.form {
-    
+.form {   
     text-align: center;
-    background-color: #999;
+    background-color: #e9d8f4;
+    height: 500px;
   }
   .button {
-    background-color: #4CAF50; /* Green */
+    background-color :#58257b;
     border: none;
     border-radius: 15px;
     width: 150px;
@@ -21,27 +21,31 @@
   }
   
   .button {
-    background-color: white;
-    color: black;
-    border: 2px solid #555555;
+    background-color: #58257b;
+    color: white;
+    width: 900px;
+    border: 1px solid #555555;
   }
   
-  .button:hover {
-    background-color: #555555;
+  /* .button:hover {
+    background-color:#58257b;
+    width: 900px;
     color: white;
-  }
+  } */
   .text{
-      font-size: 24px;
-      text-shadow: 2px 2px 5px rgb(119, 109, 109);
-      padding-right: 30px;
+      font-size: 24px;  
+      margin-right: 750px; 
+      color: #58257b;
+
   }
   .input{
-    border-bottom: 6px solid rgb(20, 19, 19);
-    background-color: lightgrey;
-    width: 300px;
-  
+    width: 900px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
   }
   .content-wrapper{
     width: 1500px;
+    
   }
   

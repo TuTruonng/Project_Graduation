@@ -1,7 +1,6 @@
 using KhoaLuanTotNghiep.Data;
 using KhoaLuanTotNghiep_BackEnd.IdentityServer;
 using KhoaLuanTotNghiep_BackEnd.Interface;
-using KhoaLuanTotNghiep_BackEnd.InterfaceService;
 using KhoaLuanTotNghiep_BackEnd.Models;
 using KhoaLuanTotNghiep_BackEnd.Service;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +38,7 @@ namespace KhoaLuanTotNghiep_BackEnd {
 
             services.AddTransient<IUser, UserService>();
             services.AddTransient<Icategory, CategoryService>();
+            services.AddTransient<INews, NewsService>();
             services.AddTransient<IRealEstate, RealEstateService>();
 
             services.AddCors(options =>
@@ -72,20 +72,23 @@ namespace KhoaLuanTotNghiep_BackEnd {
                .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material somewhere secure
 
             services.AddAuthentication()
-                .AddLocalApi("Bearer", option =>
+                .AddLocalApi("ADMIN", option =>
                 {
                     option.ExpectedScope = "KhoaLuan.api";
                 });
 
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("ADMIN", policy =>
+            //    {
+            //        policy.AddAuthenticationSchemes("admin");
+            //        policy.RequireAuthenticatedUser();
+            //    });
+            //});
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Bearer", policy =>
-                {
-                    policy.AddAuthenticationSchemes("Bearer");
-                    policy.RequireAuthenticatedUser();
-                });
+                options.AddPolicy("ADMIN", policy => policy.RequireRole("ADMIN"));
             });
-
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy", builder => builder
@@ -101,7 +104,7 @@ namespace KhoaLuanTotNghiep_BackEnd {
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Khoa Luan API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("ADMIN", new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.OAuth2,
                     Flows = new OpenApiOAuthFlows
@@ -119,7 +122,7 @@ namespace KhoaLuanTotNghiep_BackEnd {
                     {
                         new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ADMIN" }
                         },
                         new List<string>{ "KhoaLuan.api" }
                     }
