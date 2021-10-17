@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,23 +8,26 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
     public class RealEstate
     {
         public string RealEstateID { get; set; }
-        public string UserID { get; set; }
+
         public int CategoryID { get; set; }
+
+        public string UserID { get; set; }
+
         public string ReportID { get; set; }
 
         public string Title { get; set; }
 
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         public string Image { get; set; }
 
         public string Description { get; set; }
 
-        public int Quantity { get; set; }
+        public int Quality { get; set; }
 
-        public string Acgreage { get; set; }
+        public string Acreage { get; set; }
 
-        public string  Slug { get; set; }
+        public string Slug { get; set; }
 
         public int Approve { get; set; }
 
@@ -39,8 +41,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public DateTime UpdateTime { get; set; }
 
-
-        public ICollection<Report> reports { get; set; }
+        public ICollection<Report> Reports { get; set; }
 
         public Category category { get; set; }
 

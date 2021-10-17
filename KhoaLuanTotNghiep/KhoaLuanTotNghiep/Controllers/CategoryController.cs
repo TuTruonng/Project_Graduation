@@ -12,7 +12,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-   // [Authorize("Bearer")]
+   // [Authorize("ADMIN")]
     public class CategoryController : ControllerBase
     {
         private readonly Icategory _categoryService;
@@ -23,10 +23,10 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<CategoryModel>>> GetListAsync()
+       [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<CategoryModel>>> GetListAsync([FromQuery] CategoryRequestParam requestParam)
         {
-            return Ok(await _categoryService.GetListCategoryAsync());
+            return Ok(await _categoryService.GetListCategoryAsync(requestParam));
         }
 
         [HttpPost]
@@ -38,12 +38,14 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
         }
 
         [HttpPut("{id}")]
+       [AllowAnonymous]
         public async Task<ActionResult<CategoryModel>> UpdateAsync(int id, CategoryModel category)
         {
             if (!ModelState.IsValid) return BadRequest("Category Id is not valid");         
             return Ok(await _categoryService.UpdateCategoryAsync(id, category));
         }
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<bool>> DeleteAsync(int id)
         {
             if (!ModelState.IsValid) return BadRequest("Category Id is not valid");

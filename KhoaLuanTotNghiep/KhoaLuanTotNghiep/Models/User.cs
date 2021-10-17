@@ -20,7 +20,18 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public int Point { get; set; }
 
-        public ICollection<News> news { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public DateTime? JoinedDate { get; set; }
+
+        public bool? IsChange { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+
+        public ICollection<News> News { get; set; }
+
 
     }
 }

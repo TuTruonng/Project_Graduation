@@ -1,4 +1,5 @@
-﻿using KhoaLuanTotNghiep_BackEnd.InterfaceService;
+﻿using KhoaLuanTotNghiep_BackEnd.Enum;
+using KhoaLuanTotNghiep_BackEnd.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShareModel;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace KhoaLuanTotNghiep_BackEnd.Controllers
 {
-    [Route("[controller]")]
+    [Route("[Controller]")]
     [ApiController]
-   
+  
     public class RealEstateController : ControllerBase
-    {
+    { 
         public readonly IRealEstate _realStateService;
 
         public RealEstateController(IRealEstate realStatrService)
@@ -29,33 +30,6 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult> GetById(string id)
-        {
-            var result = await _realStateService.GetByIdAsync(id);
-            return Ok(result);
-        }
-
-        //[HttpGet]
-        //[Route("category={categoryName}")]
-        //[AllowAnonymous]
-        //public async Task<ActionResult> GetByCategory(string categoryName)
-        //{
-        //    var results = await _product.GetByCategoryAsync(categoryName);
-        //    return Ok(results);
-        //}
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<ActionResult<RealEstateModel>> Create([FromForm] RealEstateCreateRequest productShare)
-        //{
-
-        //    var result = await _realStateService.CreateRealEstatesAsync(productShare);
-        //    return Ok(result);
-        //}
-
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult<RealEstateModel>> CreateAsync(RealEstateModel realEstate)
@@ -65,29 +39,13 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
 
         }
 
-        //[HttpDelete]
-        //[Route("{id}")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var result = await _realStateService.DeleteRealEstateModelAsync(id);
-        //    if (result == null)
-        //        return NotFound();
-        //    return Ok(result);
-        //}
+        [HttpDelete]
+        [AllowAnonymous]
+        public async Task<ActionResult<RealEstateModel>> DeleteAsync(string id)
+        {
+            if (!ModelState.IsValid) return BadRequest(id);
+            return Ok(await _realStateService.DeleteRealEstateModelAsync(id));
 
-        //[HttpPut]
-        //[Route("{id}")]
-        //public async Task<ActionResult> Update(int id, [FromForm] ProductCreateRequest model)
-        //{
-        //    var product = await _product.FindByIdAsync(id);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var result = await _product.UpdateAsync(id, model);
-        //    return Ok(result);
-        //}
-
+        }
     }
 }

@@ -11,14 +11,13 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
         [Key]
         public string ReportID { get; set; }
 
-        public string RealEstateID { get; set; }
+        public string RealEstatetID { get; set; }
 
         public string Status { get; set; }
 
-        public DateTime CreaeTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
-        public DateTime UpadateTime { get; set; }
-
+        public DateTime UpdateTime { get; set; }
 
         public string IPAddress { get; set; }
     }
