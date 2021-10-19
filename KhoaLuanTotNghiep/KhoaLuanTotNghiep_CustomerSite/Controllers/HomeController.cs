@@ -1,4 +1,5 @@
 ﻿using KhoaLuanTotNghiep_CustomerSite.Models;
+using KhoaLuanTotNghiep_CustomerSite.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,18 @@ namespace KhoaLuanTotNghiep_CustomerSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRealEstateApiClient _productApiClient;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRealEstateApiClient productApiClient)
         {
             _logger = logger;
+            _productApiClient = productApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var results = await _productApiClient.GetProducts();
+            return View(results);
         }
 
         public IActionResult Privacy()

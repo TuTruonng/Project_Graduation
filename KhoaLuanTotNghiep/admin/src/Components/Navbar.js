@@ -9,7 +9,7 @@ export default class Navbar extends Component {
     {/* <!-- Brand Logo --> */}
                                                                                                                                                                                                                                                                                                                                                                                                                      <a href="/" className="brand-link">
 
-      <span className="brand-text font-weight-light" >Đất Nhân Tâm </span>
+      <span className="brand-text font-weight-light" >Đắt Nhân Tâm </span>
 
     </a>
     <div className="sidebar">
