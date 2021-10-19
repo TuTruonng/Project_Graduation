@@ -9,7 +9,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Interface
 {
     public interface Icategory
     {
-        Task<ICollection<CategoryModel>> GetListCategoryAsync();
+        Task<ICollection<CategoryModel>> GetListCategoryAsync(CategoryRequestParam requestParam);
 
         Task<CategoryModel> CreateCategoryAsync(CategoryModel categoryModel);
 
