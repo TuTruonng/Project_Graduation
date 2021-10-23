@@ -79,6 +79,7 @@ namespace KhoaLuanTotNghiep_CustomerSite
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -93,6 +94,8 @@ namespace KhoaLuanTotNghiep_CustomerSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -13,6 +13,10 @@ namespace ShareModel
         public int CategoryID { get; set; }
 
         public string UserID { get; set; }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
         public string CategoryName { get; set; }
 
         public string ReportID { get; set; }
@@ -32,5 +36,19 @@ namespace ShareModel
         public string Status { get; set; }
 
         public string Location { get; set; }
+<<<<<<< HEAD
+=======
+
+
+        //public List<RealEstatefromCategory> realestates { get; set; }
+        ////public string CategoryName { get; set; }
+
+        ////public List<RealEstateModel> realestates { get; set; }
+
+        //public RealEstatefromCategory()
+        //{
+        //    realestates = new List<RealEstatefromCategory>();
+        //}
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
     }
 }

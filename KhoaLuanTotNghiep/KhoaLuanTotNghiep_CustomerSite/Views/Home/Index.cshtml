@@ -1,6 +1,10 @@
 ﻿@model IList<ShareModel.RealEstateModel>
 @section Styles {
+<<<<<<< HEAD
     <link rel="stylesheet" href="~/css/home.css" />
+=======
+    <link rel="stylesheet" href="~/css/Home.css" />
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
 }
 
 
@@ -82,10 +86,17 @@
                 <img class="card-img-top" src="@product.Image" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-title">@product.Title</p>
+<<<<<<< HEAD
                     <p class="card-text">@product.Price  <br />    @product.Location</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Last updated 3 mins ago</small>
+=======
+                    <p class="card-text">@product.Price  -  @product.acreage  <br /><br />    @product.Location</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">@product.CreateTime</small>
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
                 </div>
 
         </a>

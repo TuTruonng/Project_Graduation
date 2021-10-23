@@ -38,6 +38,8 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public ICollection<Report> reports { get; set; }
 
+        public virtual IEnumerable<Rate> Rates { get; set; }
+
         public Category category { get; set; }
 
         public User user { get; set; }

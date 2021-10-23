@@ -34,7 +34,11 @@
     width: 70%;
     z-index: 2;
     position: absolute;
+<<<<<<< HEAD
     top: 343px;
+=======
+    top: 150px;
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
     display: inline-block;
     background-color: #ffffff;
 }
@@ -179,3 +183,78 @@ li {
 .card-img-top {
     height: 50%;
 }
+<<<<<<< HEAD
+=======
+
+a, u {
+    text-decoration: none !important;
+}
+
+.card-text {
+    color: black;
+}
+
+.rate-area {
+    float: left;
+    border-style: none;
+    float: right;
+    margin-right: 50px;
+}
+
+    .rate-area:not(:checked) > input[type=submit] {
+        position: absolute;
+        top: -9999px;
+        clip: rect(0,0,0,0);
+    }
+
+    .rate-area:not(:checked) > label {
+        float: right;
+        width: 1em;
+        padding: 0 .1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 400%;
+        line-height: 1.2;
+        color: lightgrey;
+        text-shadow: 1px 1px #bbb;
+    }
+
+.rate-area:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate-area > input[type=submit]:checked ~ label {
+    color: greenyellow;
+    text-shadow: 1px 1px #c60;
+    font-size: 450% !important;
+}
+
+.rate-area:not(:checked) > label:hover, .rate-area:not(:checked) > label:hover ~ label {
+    color: greenyellow;
+}
+
+.rate-area > input[type=submit]:checked + label:hover, .rate-area > input[type=submit]:checked + label:hover ~ label, .rate-area > input[type=submit]:checked ~ label:hover, .rate-area > input[type=submit]:checked ~ label:hover ~ label, .rate-area > label:hover ~ input[type=submit]:checked ~ label {
+    color: greenyellow;
+    text-shadow: 1px 1px goldenrod;
+}
+
+.rate-area > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.rate {
+    font-size: 30px;
+    margin-top: 50px;
+    text-shadow: black 2px 3px 4px;
+    color: #FFCC66;
+}
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3

@@ -31,6 +31,11 @@ namespace ShareModel
 
         public int Approve { get; set; }
 
+        public DateTime CreateTime { get; set; }
+
+        public DateTime UpdateTime { get; set; }
+
+
         public string Status { get; set; }
 
         public int PhoneNumber { get; set; }
