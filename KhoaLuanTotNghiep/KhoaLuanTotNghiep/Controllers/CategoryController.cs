@@ -43,6 +43,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             if (!ModelState.IsValid) return BadRequest("Category Id is not valid");         
             return Ok(await _categoryService.UpdateCategoryAsync(id, category));
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteAsync(int id)
         {

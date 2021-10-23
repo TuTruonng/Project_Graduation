@@ -38,14 +38,14 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             return Ok(result);
         }
 
-        //[HttpGet]
-        //[Route("category={categoryName}")]
-        //[AllowAnonymous]
-        //public async Task<ActionResult> GetByCategory(string categoryName)
-        //{
-        //    var results = await _product.GetByCategoryAsync(categoryName);
-        //    return Ok(results);
-        //}
+        [HttpGet]
+        [Route("category={categoryName}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetByCategory(string categoryName)
+        {
+            var results = await _realStateService.GetByCategoryAsync(categoryName);
+            return Ok(results);
+        }
 
         //[HttpPost]
         //[AllowAnonymous]

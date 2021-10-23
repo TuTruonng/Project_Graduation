@@ -21,8 +21,6 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public string Description { get; set; }
 
-        public int Quantity { get; set; }
-
         public string Acgreage { get; set; }
 
         public string  Slug { get; set; }
@@ -30,8 +28,6 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
         public int Approve { get; set; }
 
         public string Status { get; set; }
-
-        public int PhoneNumber { get; set; }
 
         public string Location { get; set; }
 
@@ -42,7 +38,11 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public ICollection<Report> reports { get; set; }
 
+        public virtual IEnumerable<Rate> Rates { get; set; }
+
         public Category category { get; set; }
+
+        public User user { get; set; }
 
     }
 }

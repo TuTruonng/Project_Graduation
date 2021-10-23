@@ -25,13 +25,16 @@ namespace ShareModel
 
         public string Description { get; set; }
 
-        public int Quantity { get; set; }
-
         public string acreage { get; set; }
 
         public string Slug { get; set; }
 
         public int Approve { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public DateTime UpdateTime { get; set; }
+
 
         public string Status { get; set; }
 

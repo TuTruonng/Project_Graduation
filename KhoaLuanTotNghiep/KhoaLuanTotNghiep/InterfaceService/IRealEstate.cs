@@ -17,6 +17,8 @@ namespace KhoaLuanTotNghiep_BackEnd.InterfaceService
 
         Task<bool> DeleteRealEstateModelAsync(string id);
 
+        Task<IEnumerable<RealEstatefromCategory>> GetByCategoryAsync(string categoryName);
+
         Task<RealEstateModel> GetByIdAsync(string id);
     }
 }

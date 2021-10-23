@@ -13,17 +13,17 @@ namespace KhoaLuanTotNghiep_CustomerSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IRealEstateApiClient _productApiClient;
+        private readonly IRealEstateApiClient _realestateApiClient;
 
         public HomeController(ILogger<HomeController> logger, IRealEstateApiClient productApiClient)
         {
             _logger = logger;
-            _productApiClient = productApiClient;
+            _realestateApiClient = productApiClient;
         }
 
         public async Task<IActionResult> Index()
         {
-            var results = await _productApiClient.GetProducts();
+            var results = await _realestateApiClient.GetProducts();
             return View(results);
         }
 

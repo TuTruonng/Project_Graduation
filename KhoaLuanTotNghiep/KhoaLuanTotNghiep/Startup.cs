@@ -39,17 +39,18 @@ namespace KhoaLuanTotNghiep_BackEnd {
 
             services.AddTransient<IUser, UserService>();
             services.AddTransient<Icategory, CategoryService>();
+            services.AddTransient<IRate, RateService>();
             services.AddTransient<IRealEstate, RealEstateService>();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("Policy", builder => builder
-                    .WithOrigins("<Origin One>", "<Origin Two>")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                );
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("Policy", builder => builder
+            //        .WithOrigins("<Origin One>", "<Origin Two>")
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials()
+            //    );
+            //});
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
