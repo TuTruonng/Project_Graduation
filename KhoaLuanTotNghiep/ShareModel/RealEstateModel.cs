@@ -12,15 +12,14 @@ namespace ShareModel
 
         public int CategoryID { get; set; }
 
-        public string CategoryName { get; set; }
-
         public string UserID { get; set; }
+        public string CategoryName { get; set; }
 
         public string ReportID { get; set; }
 
         public string Title { get; set; }
 
-        public decimal Price { get; set; }
+        public string Price { get; set; }
 
         public string Image { get; set; }
 
@@ -31,6 +30,11 @@ namespace ShareModel
         public string Slug { get; set; }
 
         public int Approve { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public DateTime UpdateTime { get; set; }
+
 
         public string Status { get; set; }
 

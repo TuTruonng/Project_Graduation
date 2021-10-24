@@ -1,0 +1,260 @@
+﻿body {
+    padding: 0;
+    justify-content: center;
+    margin: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0
+}
+
+#main {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 600px;
+    background-color: yellow;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-inner {
+    width: 100%;
+    max-height: 100% !important;
+}
+
+#img {
+    width: 100%;
+}
+
+#frm-main {
+    align-items: center;
+    height: 120px;
+    width: 70%;
+    z-index: 2;
+    position: absolute;
+<<<<<<< HEAD
+    top: 343px;
+=======
+    top: 150px;
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
+    display: inline-block;
+    background-color: #ffffff;
+}
+
+#txt-search {
+    margin-top: 5px;
+    width: 100%;
+    height: 150%;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-search {
+    width: 90%;
+    height: 150%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.navbar .nav {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 3px;
+    font-size: 1.2rem
+}
+
+#nav-header {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 43px;
+    width: 70%;
+    z-index: 3;
+    position: absolute;
+    top: 300px;
+}
+
+.nav .text-dark {
+    color: blue;
+}
+
+#nav1 {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 10%;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -15px;
+    margin-right: -15px;
+    opacity: 1;
+}
+
+#dropdownMenuButton {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.dropdown button {
+    width: 50%;
+    height: 60px;
+    float: left;
+}
+
+a {
+    font-weight: bold;
+}
+
+
+#nav-item {
+    background-color: transparent;
+}
+
+li {
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-right: 15px;
+}
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+    width: 80%;
+    float: left;
+}
+
+    .search input {
+        height: 60px;
+        text-indent: 25px;
+        border: 2px solid #d6d4d4
+    }
+
+        .search input:focus {
+            box-shadow: none;
+            border: 2px solid blue
+        }
+
+    .search .fa-search {
+        position: absolute;
+        top: 20px;
+        left: 16px
+    }
+
+    .search button {
+        position: absolute;
+        top: 5px;
+        font-size: 100%;
+        right: 5px;
+        height: 80%;
+        width: 15%;
+        background: blue
+    }
+
+#card-items {
+    margin: 10%;
+    width: 100%;
+    background-color: yellow;
+}
+
+#card-img1 {
+    width: 100%;
+    height: 0%;
+    background-color: aqua
+}
+
+.card-title {
+    color: cornflowerblue;
+}
+
+.card-text {
+    font-weight: bold;
+}
+
+#title-RealEstate {
+    margin: 2% 5% 2% 5%;
+}
+
+#card-RealEstate {
+    margin: 1% 5% 2% 5%;
+}
+
+.card-img-top {
+    height: 50%;
+}
+<<<<<<< HEAD
+=======
+
+a, u {
+    text-decoration: none !important;
+}
+
+.card-text {
+    color: black;
+}
+
+.rate-area {
+    float: left;
+    border-style: none;
+    float: right;
+    margin-right: 50px;
+}
+
+    .rate-area:not(:checked) > input[type=submit] {
+        position: absolute;
+        top: -9999px;
+        clip: rect(0,0,0,0);
+    }
+
+    .rate-area:not(:checked) > label {
+        float: right;
+        width: 1em;
+        padding: 0 .1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 400%;
+        line-height: 1.2;
+        color: lightgrey;
+        text-shadow: 1px 1px #bbb;
+    }
+
+.rate-area:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate-area > input[type=submit]:checked ~ label {
+    color: greenyellow;
+    text-shadow: 1px 1px #c60;
+    font-size: 450% !important;
+}
+
+.rate-area:not(:checked) > label:hover, .rate-area:not(:checked) > label:hover ~ label {
+    color: greenyellow;
+}
+
+.rate-area > input[type=submit]:checked + label:hover, .rate-area > input[type=submit]:checked + label:hover ~ label, .rate-area > input[type=submit]:checked ~ label:hover, .rate-area > input[type=submit]:checked ~ label:hover ~ label, .rate-area > label:hover ~ input[type=submit]:checked ~ label {
+    color: greenyellow;
+    text-shadow: 1px 1px goldenrod;
+}
+
+.rate-area > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.rate {
+    font-size: 30px;
+    margin-top: 50px;
+    text-shadow: black 2px 3px 4px;
+    color: #FFCC66;
+}
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3

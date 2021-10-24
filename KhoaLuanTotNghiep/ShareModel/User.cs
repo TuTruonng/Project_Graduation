@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 
-namespace KhoaLuanTotNghiep_BackEnd.Models
+
+namespace ShareModel
 {
     public class User : IdentityUser
     {
@@ -16,11 +19,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
         {
         }
 
-        public decimal Salary { get; set; }
-
-        public int Point { get; set; }
-
-        public ICollection<News> news { get; set; }
-
+        [PersonalData]
+        public string FullName { get; set; }
     }
 }

@@ -4,19 +4,15 @@ import { Link } from "react-router-dom";
 import LoaiBatDongSanService from "../../Services/LoaiBatDongSanService";
 import"./LoaiBDS.css";
 
-const ListLoaiBDS = () => {
+const ListCategory = () => {
   const [categories, setcategories] = useState([]);
   const [itemSelected, setSelected] = React.useState(null);
-  let params = {};
+
   useEffect(() => {
-    params = {     
-      query: "",
-    };
-    _fetchCategory();
+    fetchCategory();
   }, []);
 
-
-  const _fetchCategory = () => {
+  const fetchCategory = () => {
     LoaiBatDongSanService.getList().then(({ data }) => setcategories(data));
   };
   console.log("leduyen");
@@ -32,35 +28,22 @@ const ListLoaiBDS = () => {
   };
 
   const _removeViewItem = (lists, itemDel) =>
-    lists.filter((item) => item.categoryID !== itemDel);
-
-    const handleSearch = (query) => {
-      params.query = query;
-      _fetchCategory();
-    };
-  
-    const handleSearchKey = () => {
-      params.query = "";
-      _fetchCategory();
-    };
-  
+    lists.filter((item) => item.CategoryID !== itemDel);
 
   return (
     <div class="content-wrapper">
       <br />
-      <h3  style={{color:"#58257b", fontSize:"36px"}}>Danh sách bất động sản</h3>
-      <br />
       <div className="text-right">
-        <div className="row" style={{ marginLeft: "500px" }}>
+        <div className="row" style={{ marginLeft: "800px" }}>
           <div class="col-sm-6"  >
-            <div className="input-group" data-widget="sidebar-search"  >
+            <div className="input-group" data-widget="sidebar-search" >
               <input       
                 className="form-control form-control-sidebar"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <div className="input-group-append" style={{border: "1px dotted #e0dcdc"}}>
+              <div className="input-group-append" style={{border: "2px dotted #e0dcdc"}}>
                 <button className="btn btn-sidebar">
                   <i className="fas fa-search fa-fw"></i>
                 </button>
@@ -68,28 +51,22 @@ const ListLoaiBDS = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-2" style={{ marginLeft: "100px"
-        }}>
-            <Link to={`/createLoaibatdongsan/`}>
+          <div class="col-sm-2" style={{ marginLeft: "100px"}}>
+            <Link to={`/createcategory/`}>
               <Button outline color="success" style={{ width: "150px"}}>
                 Create
               </Button>
             </Link>
           </div>
         </div>
-        
       </div>
-      <br/>
-      <Table  style ={{backgroundColor : "#e9d8f4", bordercollapse:"collapse",width:"1300px",marginLeft:"50px"}}>
-     
+      <Table>
         <thead>
-          <tr style ={{backgroundColor : "#58257b", color:"white"}}>
+          <tr>
             <th>STT</th>
             <th>CategoryName</th>
             <th>Description</th>
             <th>CategoryID</th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -101,7 +78,7 @@ const ListLoaiBDS = () => {
                 <td>{item.description}</td>
                 <td>{item.categoryID}</td>
                 <td className="text-right">
-                  <Link to={`/Editloaibatdongsany/${item.categoryID}`}>
+                  <Link to={`/Editcategory/${item.categoryID}`}>
                     <i
                       className="fas fa-edit"
                       style={{
@@ -121,7 +98,7 @@ const ListLoaiBDS = () => {
                       fontSize: "20px",
                       color: "#E54646",
                     }}
-                    onClick={() => handleDelete(item.categoryID)}
+                    onClick={() => handleDelete(item.categoryId)}
                   ></i>
                 </td>
               </tr>
@@ -133,4 +110,4 @@ const ListLoaiBDS = () => {
   );
 };
 
-export default ListLoaiBDS;
+export default ListCategory;

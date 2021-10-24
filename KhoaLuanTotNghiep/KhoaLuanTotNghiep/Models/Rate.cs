@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace KhoaLuanTotNghiep_BackEnd.Models
 {
-    public class News
+    public class Rate
     {
         [Key]
-        public string NewsID { get; set; }
-        public string UserID { get; set; }
+        public int idRate { get; set; }
 
-        public string NewsName { get; set; }
+        public int Value { get; set; }
 
-        public string Description { get; set; }
+        public string RealEstateId { get; set; }
+
+        public string UserId { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace KhoaLuanTotNghiep_CustomerSite.Service
 
         Task<RealEstateModel> GetProductById(string id);
 
-        Task<IList<RealEstatefromCategory>> GetProductByCategory(string categoryName);
+        Task<IEnumerable<RealEstatefromCategory>> GetProductByCategory(string categoryName);
 
-        Task<bool> Rating(int productId, int values);
+        Task<bool> Rating(string productId, int values);
     }
 }

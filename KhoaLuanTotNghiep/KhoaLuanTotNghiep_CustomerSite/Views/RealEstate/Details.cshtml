@@ -1,0 +1,75 @@
+﻿@model ShareModel.RealEstateModel
+@using Microsoft.AspNetCore.Http
+<div class="p-5 border rounded">
+    <div class="form-group row ">
+        <div class="col-6" style="text-align: center;">
+            <img src="@Model.Image" alt="New york" style="width:450px;">
+        </div>
+        <div class="col-6">
+
+            <div class="product-name" style=" text-shadow: black 2px 3px 4px; color: #FFCC66;">
+                <h1>@Model.Title</h1>
+            </div>
+            <hr />
+            <p>
+                <span class="item-title">ID:</span>
+                <span>
+                    <strong>
+                        @Model.RealEstateID
+                    </strong>
+                </span>
+            </p>
+            <p>
+                <span class="item-title">Description: @Model.Description</span>
+            </p>
+            <p>
+                <span class="item-title">Category Name: @Model.CategoryName</span>
+            </p>
+            <div class="price-box">
+                <h3>@Model.Price.ToString().Insert(3, ".") VNĐ</h3>
+            </div>
+            <div>
+                @using (Html.BeginForm("addProductToCart", "Product", FormMethod.Post))
+                {
+                    <input type="hidden" id="id" name="id" value=@Model.RealEstateID />
+                    <input type="hidden" id="qty" name="qty" value=1 />
+                    <button id="addCart" name="addCart" type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-shopping-cart"></i> Thêm vào yêu thích</button>}
+            </div>
+            @*<div class="form-group">
+<<<<<<< HEAD
+                <input hidden asp-for="@Model.RealEstateID" />
+                <a asp-controller="Home" asp-action="Index" class="btn btn-success">Back</a>
+            </div>*@
+=======
+                    <input hidden asp-for="@Model.RealEstateID" />
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-success">Back</a>
+                </div>*@
+>>>>>>> 463f3093853a650cbe23a8a0ed6670a2c5dd17e3
+        </div>
+    </div>
+</div>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+@using (Html.BeginForm("Voting", "Rating"))
+{
+@Html.HiddenFor(x => x.RealEstateID)
+                    <span class="rate-area">
+                        <h5 class="rate">Rate Product</h5>
+                        <input type="submit" id="5-star" name="rating" value="5" />
+                        <label for="5-star" title="Amazing">5 stars</label>
+
+                        <input type="submit" id="4-star" name="rating" value="4" />
+                        <label for="4-star" title="Good">4 stars</label>
+
+                        <input type="submit" id="3-star" name="rating" value="3" />
+                        <label for="3-star" title="Average">3 stars</label>
+
+                        <input type="submit" id="2-star" name="rating" value="2" />
+                        <label for="2-star" title="Not Good">2 stars</label>
+
+                        <input type="submit" id="1-star" name="rating" value="1" />
+                        <label for="1-star" title="Bad">1 star</label>
+                    </span>}}
+

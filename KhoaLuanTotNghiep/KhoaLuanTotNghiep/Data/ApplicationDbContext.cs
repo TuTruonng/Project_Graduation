@@ -10,15 +10,18 @@ namespace KhoaLuanTotNghiep.Data
             : base(options)
         {
         }
-
-        public DbSet<Category> category { get; set; }
+        
+        public DbSet<Category> categories { get; set; }
 
         public DbSet<RealEstate> realEstates { get; set; }
 
-        public DbSet<News> news { get; set; }
-
         public DbSet<Report> reports { get; set; }
 
+        public DbSet<News> news { get; set; }
+
         public DbSet<Transaction> transactions { get; set; }
+
+        public DbSet<Rate> rates { get; set; }
+
     }
 }
