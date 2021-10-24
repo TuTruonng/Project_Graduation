@@ -11,10 +11,14 @@ namespace KhoaLuanTotNghiep_BackEnd.Interface
     {
         Task<IEnumerable<RealEstateModel>> GetAllAsync();
 
+        Task<IEnumerable<RealEstateModel>> GetListApproveAsync();
+
         Task<RealEstateModel> CreateRealEstatesAsync(RealEstateModel realEstateModel);
 
         Task<RealEstateModel> UpdateRealEstateAsync(string id, RealEstateModel realEstateModel);
 
-        Task<bool> DeleteRealEstateModelAsync(string id);
+        Task<bool> DeleteRealEstateModelAsync(string id, StateApprove stateApprove);
+
+        Task<bool> DisableAsync(string id, StateApprove stateApprove);
     }
 }
