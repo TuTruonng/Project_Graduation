@@ -93,7 +93,7 @@ const ListBDS = () => {
             <th>Price</th>
             <th>Image</th>
             <th>Description</th>
-            <th>Quality</th>
+              <th>Quality</th>
             <th>Status</th>
             <th>Location</th>
             <th>PhoneNumber</th>
