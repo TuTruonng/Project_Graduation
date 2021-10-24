@@ -12,9 +12,9 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
 {
     [Route("[Controller]")]
     [ApiController]
-  
+
     public class RealEstateController : ControllerBase
-    { 
+    {
         public readonly IRealEstate _realStateService;
 
         public RealEstateController(IRealEstate realStatrService)
@@ -22,12 +22,20 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             _realStateService = realStatrService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         [AllowAnonymous]
         public async Task<ActionResult<RealEstateModel>> Get()
         {
             var product = await _realStateService.GetAllAsync();
             return Ok(product);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<RealEstateModel>> GetListApprove()
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            return Ok(await _realStateService.GetListApproveAsync());
         }
 
         [HttpPost]
@@ -44,8 +52,15 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
         public async Task<ActionResult<RealEstateModel>> DeleteAsync(string id)
         {
             if (!ModelState.IsValid) return BadRequest(id);
-            return Ok(await _realStateService.DeleteRealEstateModelAsync(id));
+            return Ok(await _realStateService.DeleteRealEstateModelAsync(id, StateApprove.TRUE));
+        }
 
+        [HttpPut]
+        [AllowAnonymous]
+        public async Task<ActionResult<RealEstateModel>> UpdateAsync(string id, RealEstateModel realEstate)
+        {
+            if (!ModelState.IsValid) return BadRequest(id);
+            return Ok(await _realStateService.UpdateRealEstateAsync(id, realEstate));
         }
     }
 }
