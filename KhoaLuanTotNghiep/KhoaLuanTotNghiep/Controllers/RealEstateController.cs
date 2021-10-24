@@ -34,7 +34,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<RealEstateModel>> GetListApprove()
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if(!ModelState.IsValid) return BadRequest();
             return Ok(await _realStateService.GetListApproveAsync());
         }
 
