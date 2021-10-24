@@ -22,7 +22,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             _realStateService = realStatrService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         [AllowAnonymous]
         public async Task<ActionResult<RealEstateModel>> Get()
         {
@@ -30,10 +30,19 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
             return Ok(product);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<RealEstateModel>> GetListApprove()
+        {
+            var product = await _realStateService.GetListApproveAsync();
+            return Ok(product);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult<RealEstateModel>> CreateAsync(RealEstateModel realEstate)
         {
+
             if (!ModelState.IsValid) return BadRequest(realEstate);
             return Ok(await _realStateService.CreateRealEstatesAsync(realEstate));
 
@@ -44,8 +53,15 @@ namespace KhoaLuanTotNghiep_BackEnd.Controllers
         public async Task<ActionResult<RealEstateModel>> DeleteAsync(string id)
         {
             if (!ModelState.IsValid) return BadRequest(id);
-            return Ok(await _realStateService.DeleteRealEstateModelAsync(id));
+            return Ok(await _realStateService.DeleteRealEstateModelAsync(id, StateApprove.TRUE));
+        }
 
+        [HttpPut]
+        [AllowAnonymous]
+        public async Task<ActionResult<RealEstateModel>> UpdateAsync(string id,RealEstateModel realEstate)
+        {
+            if (!ModelState.IsValid) return BadRequest(id);
+            return Ok(await _realStateService.UpdateRealEstateAsync(id, realEstate));
         }
     }
 }
