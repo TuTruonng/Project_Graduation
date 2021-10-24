@@ -1,4 +1,5 @@
-﻿using KhoaLuanTotNghiep.Data;
+﻿using Gremlin.Net.Process.Traversal;
+using KhoaLuanTotNghiep.Data;
 using KhoaLuanTotNghiep_BackEnd.Enum;
 using KhoaLuanTotNghiep_BackEnd.Interface;
 using KhoaLuanTotNghiep_BackEnd.Models;
@@ -19,10 +20,42 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
         {
             _dbContext = dbContext;
         }
+        
+        public async Task<IEnumerable<RealEstateModel>> GetAllAsync()
+        {
+            var product = await _dbContext.realEstates.Include(p => p.category).Join(
+            _dbContext.Users,
+            p => p.UserID,
+            u => u.Id,
+            (p, u) =>
+                new RealEstateModel
+                {
+                    RealEstateID = p.RealEstateID,
+                    CategoryID = p.CategoryID,
+                    UserID = p.UserID,
+                    CategoryName = p.category.CategoryName,
+                    ReportID = p.ReportID,
+                    Title = p.Title,
+                    Price = p.Price,
+                    Image = p.Image,
+                    Description = p.Description,
+                    acreage = p.Acreage,
+                    Slug = p.Slug,
+                    Approve = p.Approve,
+                    Status = p.Status,
+                    PhoneNumber = Int32.Parse(u.PhoneNumber),
+
+                    CreateTime = p.CreateTime,
+                    UpdateTime = p.UpdateTime,
+                    Location = p.Location,
+                }).ToListAsync();
+            return product;
+            
+        }
 
         public async Task<RealEstateModel> CreateRealEstatesAsync(RealEstateModel realEstateModel)
         {
-            var realEstate = await _dbContext.category.FirstOrDefaultAsync(p => p.CategoryID == realEstateModel.CategoryID);
+            var realEstate = await _dbContext.categories.FirstOrDefaultAsync(p => p.CategoryID == realEstateModel.CategoryID);
             if (realEstate == null)
             {
                 throw new Exception("Have not Category");
@@ -42,7 +75,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
                 Slug = realEstateModel.Slug,
                 Approve = (int)StateApprove.FALSE,
                 Status = realEstateModel.Status,
-                PhoneNumber = realEstateModel.PhoneNumber,
+                //PhoneNumber = realEstateModel.PhoneNumber,
                 Location = realEstateModel.Location,
             };
             var create = _dbContext.Add(Model);
@@ -52,32 +85,35 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
                 return realEstateModel;
             }
             throw new Exception("Create News Fail");
-
         }
 
-        public async Task<IEnumerable<RealEstateModel>> GetAllAsync()
+        public async Task<RealEstateModel> GetByIdAsync(string id)
         {
-            var queryable = _dbContext.realEstates.Include(x => x.category).AsQueryable();
-            queryable = queryable.Where(x => x.Approve == (short)StateApprove.TRUE);
-            var list = await queryable.Select(p => new RealEstateModel
-            {
-                RealEstateID = p.RealEstateID,
-                CategoryID = p.CategoryID,
-                UserID = p.UserID,
-                CategoryName = p.category.CategoryName,
-                ReportID = p.ReportID,
-                Title = p.Title,
-                Price = p.Price,
-                Image = p.Image,
-                Description = p.Description,
-                acreage = p.Acreage,
-                Slug = p.Slug,
-                Approve = p.Approve,
-                Status = p.Status,
-                PhoneNumber = p.PhoneNumber,
-                Location = p.Location,
-            }).ToListAsync();
-            return list;
+            var product = await _dbContext.realEstates.Include(p => p.category).Where(p => p.RealEstateID == id).Join(
+            _dbContext.Users,
+            p => p.UserID,
+            u => u.Id,
+            (p, u) =>
+
+               new RealEstateModel
+               {
+                   RealEstateID = p.RealEstateID,
+                   CategoryID = p.CategoryID,
+                   UserID = p.UserID,
+                   CategoryName = p.category.CategoryName,
+                   ReportID = p.ReportID,
+                   Title = p.Title,
+                   Price = p.Price,
+                   Image = p.Image,
+                   Description = p.Description,
+                   acreage = p.Acreage,
+                   Slug = p.Slug,
+                   Approve = p.Approve,
+                   Status = p.Status,
+                   PhoneNumber = Int32.Parse(u.PhoneNumber),
+                   Location = p.Location,
+               }).FirstOrDefaultAsync();
+            return product;
         }
 
         public async Task<IEnumerable<RealEstateModel>> GetListApproveAsync()
@@ -98,7 +134,7 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
                 Slug = p.Slug,
                 Approve = p.Approve,
                 Status = p.Status,
-                PhoneNumber = p.PhoneNumber,
+              //  PhoneNumber = p.PhoneNumber,
                 Location = p.Location,
             }).ToListAsync();
             return list;
@@ -112,13 +148,30 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
                 throw new Exception("Have not NewsID");
             }
             realEstate.Approve = realEstateModel.Approve;
-            realEstate.PhoneNumber = realEstateModel.PhoneNumber;
+          //  realEstate.PhoneNumber = realEstateModel.PhoneNumber;
             var result = await _dbContext.SaveChangesAsync();
             if (result > 0)
             {
                 return realEstateModel;
             }
             throw new Exception("Update  fail");
+        }
+        public async Task<IEnumerable<RealEstatefromCategory>> GetByCategoryAsync(string categoryName)
+        {
+            var products = await _dbContext.realEstates.Include(p => p.category)
+                .Where(p => p.category.CategoryName == categoryName)
+                .Select(p =>
+           
+                new RealEstatefromCategory
+                 {                 
+                     Title = p.Title,
+                     Description = p.Description,
+                     Price = p.Price,
+                     Image = p.Image,
+                     CategoryName = p.category.CategoryName
+                 }).ToListAsync();
+
+            return products;
         }
 
         public async Task<bool> DeleteRealEstateModelAsync(string id, StateApprove stateApprove)

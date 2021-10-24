@@ -21,9 +21,9 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public string Description { get; set; }
 
-        public string Acgreage { get; set; }
+        public string Acreage { get; set; }
 
-        public string  Slug { get; set; }
+        public string Slug { get; set; }
 
         public int Approve { get; set; }
 
