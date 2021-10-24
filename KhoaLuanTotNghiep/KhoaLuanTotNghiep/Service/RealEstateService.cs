@@ -38,10 +38,9 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
                 Price = realEstateModel.Price,
                 Image = realEstateModel.Image,
                 Description = realEstateModel.Description,
-                Quality = realEstateModel.Quality,
                 Acreage = realEstateModel.acreage,
                 Slug = realEstateModel.Slug,
-                Approve = realEstateModel.Approve,
+                Approve = (int)StateApprove.FALSE,
                 Status = realEstateModel.Status,
                 PhoneNumber = realEstateModel.PhoneNumber,
                 Location = realEstateModel.Location,
@@ -56,45 +55,80 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
 
         }
 
-
         public async Task<IEnumerable<RealEstateModel>> GetAllAsync()
         {
             var queryable = _dbContext.realEstates.Include(x => x.category).AsQueryable();
             queryable = queryable.Where(x => x.Approve == (short)StateApprove.TRUE);
-            var list = await  queryable.Select(p => new RealEstateModel
-                {
-                    RealEstateID = p.RealEstateID,
-                    CategoryID = p.CategoryID,
-                    UserID = p.UserID,
-                    CategoryName = p.category.CategoryName,
-                    ReportID = p.ReportID,
-                    Title = p.Title,
-                    Price = p.Price,
-                    Image = p.Image,
-                    Description = p.Description,
-                    Quality = p.Quality,
-                    acreage = p.Acreage,
-                    Slug = p.Slug,
-                    Approve = p.Approve,
-                    Status = p.Status,
-                    PhoneNumber = p.PhoneNumber,
-                    Location = p.Location,
-                }).ToListAsync();
+            var list = await queryable.Select(p => new RealEstateModel
+            {
+                RealEstateID = p.RealEstateID,
+                CategoryID = p.CategoryID,
+                UserID = p.UserID,
+                CategoryName = p.category.CategoryName,
+                ReportID = p.ReportID,
+                Title = p.Title,
+                Price = p.Price,
+                Image = p.Image,
+                Description = p.Description,
+                acreage = p.Acreage,
+                Slug = p.Slug,
+                Approve = p.Approve,
+                Status = p.Status,
+                PhoneNumber = p.PhoneNumber,
+                Location = p.Location,
+            }).ToListAsync();
             return list;
         }
 
-        public Task<RealEstateModel> UpdateRealEstateAsync(string id, RealEstateModel realEstateModel)
+        public async Task<IEnumerable<RealEstateModel>> GetListApproveAsync()
         {
-            throw new NotImplementedException();
+            var queryable = _dbContext.realEstates.Include(x => x.category).AsQueryable();
+            var list = await queryable.Select(p => new RealEstateModel
+            {
+                RealEstateID = p.RealEstateID,
+                CategoryID = p.CategoryID,
+                UserID = p.UserID,
+                CategoryName = p.category.CategoryName,
+                ReportID = p.ReportID,
+                Title = p.Title,
+                Price = p.Price,
+                Image = p.Image,
+                Description = p.Description,
+                acreage = p.Acreage,
+                Slug = p.Slug,
+                Approve = p.Approve,
+                Status = p.Status,
+                PhoneNumber = p.PhoneNumber,
+                Location = p.Location,
+            }).ToListAsync();
+            return list;
         }
 
-        public async Task<bool> DeleteRealEstateModelAsync(string id)
+        public async Task<RealEstateModel> UpdateRealEstateAsync(string id, RealEstateModel realEstateModel)
+        {
+            var realEstate = await _dbContext.realEstates.FirstOrDefaultAsync(x => x.RealEstateID == id);
+            if (realEstate == null)
+            {
+                throw new Exception("Have not NewsID");
+            }
+            realEstate.Approve = realEstateModel.Approve;
+            realEstate.PhoneNumber = realEstateModel.PhoneNumber;
+            var result = await _dbContext.SaveChangesAsync();
+            if (result > 0)
+            {
+                return realEstateModel;
+            }
+            throw new Exception("Update  fail");
+        }
+
+        public async Task<bool> DeleteRealEstateModelAsync(string id, StateApprove stateApprove)
         {
             var realEstate = await _dbContext.realEstates.FirstOrDefaultAsync(x => x.RealEstateID == id);
             if (realEstate == null)
             {
                 throw new Exception("Have not RealEstate");
             }
+            realEstate.Approve = (int)stateApprove;
             var delete = _dbContext.Remove(realEstate);
             var result = _dbContext.SaveChanges();
             if (result > 0)
@@ -103,6 +137,22 @@ namespace KhoaLuanTotNghiep_BackEnd.Service
             }
             throw new Exception("Delete fail");
 
+        }
+
+        public async Task<bool> DisableAsync(string id, StateApprove stateApprove)
+        {
+            var realEstate = await _dbContext.realEstates.FindAsync(id);
+            if (realEstate == null)
+            {
+                throw new Exception("Have not Real Estate");
+            }
+            realEstate.Approve = (int)stateApprove;
+            var result = await _dbContext.SaveChangesAsync();
+            if (result > 0)
+            {
+                return true;
+            }
+            throw new Exception(" Change state fail");
         }
     }
 }
