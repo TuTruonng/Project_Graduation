@@ -26,8 +26,6 @@ namespace ShareModel
 
         public string Description { get; set; }
 
-        public int Quality { get; set; }
-
         public string acreage { get; set; }
 
         public string Slug { get; set; }

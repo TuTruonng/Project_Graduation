@@ -23,8 +23,6 @@ namespace KhoaLuanTotNghiep_BackEnd.Models
 
         public string Description { get; set; }
 
-        public int Quality { get; set; }
-
         public string Acreage { get; set; }
 
         public string Slug { get; set; }
